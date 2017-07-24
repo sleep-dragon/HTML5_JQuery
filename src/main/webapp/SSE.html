@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Server sent</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+	<header id="header"></header>
+	<div class="container">
+		<div class="jumbotron">
+			<div class="page-header">
+				<h3>
+					Server sent Event
+				</h3>
+			</div>
+			<!-- 每頁不同的內容從這裡開始 -->
+			<input type="button" id="button1" value="start"></input>
+			<div id="div1"></div>
+
+
+			<!-- 每頁不同的內容到這裡結束 -->
+		</div>
+
+		<div id="row"></div>
+
+		<!-- Site footer -->
+		<div id="footer"></div>
+
+	</div>
+	<!-- /container -->
+
+
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/include.js"></script>
+	<script>
+	var source = null;
+        mydiv = document.querySelector("#div1");
+        document.querySelector("#button1").addEventListener("click",function(){
+            if(this.value=="start"){
+                this.value="stop";
+                show();
+            } else {
+                this.value="start";
+                source.close();
+                mydiv.innerHTML += "stop Connection"+"<br>";
+            }
+        })
+
+        function show(){
+            source = new EventSource('http://localhost:8081/JQuery_Ajax/sse');
+            source.addEventListener("open",function(event){
+                mydiv.innerHTML += "Connection"+"<br>";
+            })
+            source.addEventListener("message",function(event){
+                mydiv.innerHTML += event.data+"<br>";
+            })
+        }
+        </script>
+</body>
+
+</html>
