@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Servlet implementation class AccountCheck
  */
@@ -31,12 +33,19 @@ public class AccountCheck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setHeader("content-type", "text/html;charset=UTF-8");
+		response.setHeader("content-type", "text/plain;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-
-		String strMsg = "帳號不存在";
-		strMsg = "帳號已存在";
+		String account = request.getParameter("name");
+		String password = request.getParameter("password");
+		String strMsg = "";
+		if(!StringUtils.isEmpty(account)) {
+			strMsg += account.equals("Amy")?"帳號已存在 ":"帳號不存在 ";
+		}
+		if(!StringUtils.isEmpty(password)) {
+			strMsg += password.equals("123456")?"密碼正確 ":"密碼錯誤 ";
+		}
+		
 		out.write(strMsg);
 
 	}
