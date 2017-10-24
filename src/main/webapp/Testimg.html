@@ -32,26 +32,7 @@
 	<script src="js/jquery-1.9.1.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/include.js"></script>
-	<script>
-		
-		var $myDiv = $("#div1");
-		var $btn = $("#buttonLoad").click(function(){
-			$.ajax({
-				url : 'testimage3.xml',
-				type : 'GET',
-				dataType: "xml",
-				success : function(result) {
-					while($myDiv.children().length > 0){
-						$myDiv.empty();
-					}
-					$('<img>').attr('src','data:image/jpg;base64,'+$(result).find('test').text()).appendTo($('#div1'));
-				},
-				error : function(xhr) {
-					alert('Ajax request 發生錯誤');
-				}
-			});
-		});
-	</script>
+	<script src="js/Testimg.js"></script>
 
 </body>
 
