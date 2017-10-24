@@ -82,6 +82,8 @@
 						<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
 					</webAppConfig>
 					<scanIntervalSeconds>5</scanIntervalSeconds>
+					<stopPort>9966</stopPort>
+					<stopKey>foo</stopKey>
 				</configuration>
 			</plugin>
 			<plugin>
