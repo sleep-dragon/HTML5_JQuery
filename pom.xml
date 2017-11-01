@@ -84,6 +84,9 @@
 					<scanIntervalSeconds>5</scanIntervalSeconds>
 					<stopPort>9966</stopPort>
 					<stopKey>foo</stopKey>
+					<httpConnector>
+          	    	 <port>8888</port>
+        		</httpConnector>
 				</configuration>
 			</plugin>
 			<plugin>
